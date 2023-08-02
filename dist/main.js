@@ -20,6 +20,10 @@ function createWindow() {
   session.setUserAgent(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
   );
+  session.setProxy({
+    proxyRules: "http://proxy.wandouip.com:8090",
+    proxyBypassRules: "<local>",
+  });
 
   // and load the index.html of the app.
   // mainWindow.loadFile("index.html");
@@ -27,6 +31,10 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
+
+// not check certificate
+app.commandLine.appendSwitch("ignore-certificate-errors");
+app.commandLine.appendSwitch("ignore-ssl-errors");
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

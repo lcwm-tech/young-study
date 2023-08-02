@@ -8,25 +8,21 @@ let currentJob = 0;
 
 async function main() {
   run();
-  let interval = setInterval(() => {
+  setInterval(() => {
     if (currentJob < MAX_JOB) {
       run();
-    } else {
-      clearInterval(interval);
     }
   }, DELAY);
 }
 
 async function run() {
-  currentJob += 1;
+  currentJob++;
   try {
     await $`pnpm start`;
   } catch (err) {
     console.log("err", err);
   }
-  setTimeout(() => {
-    run();
-  }, DELAY);
+  currentJob--;
 }
 
 main();

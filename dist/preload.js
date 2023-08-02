@@ -5,7 +5,11 @@ const { chooseAddress, startStudy } = require("./libs/prepare");
 const { handleQuestion1 } = require("./libs/question1");
 const { startQuestion2, handleQuestion2 } = require("./libs/question2");
 
-localStorage.clear();
+try {
+  localStorage.clear();
+} catch (err) {
+  ipcRenderer.send("exit-app");
+}
 
 window.addEventListener("DOMContentLoaded", async () => {
   await waitElement("#province");
